@@ -1,0 +1,32 @@
+:root{
+    
+    --cor-background-body: rgb(236, 239, 241);
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background-color: var(--cor-background-body);
+}
+
+div#forma{
+    margin: 50px auto;
+    width: 100px;
+    height: 100px;
+    border: 5px solid purple;
+    background-color: black;
+    padding: 10px;
+    box-shadow: 20px 20px 20px rgb(0, 121, 107);
+}
+
+/* div#forma > #interna{
+    width: 80px;
+    height: 80px;
+    border: 1px solid rebeccapurple;
+    background-color: var(--cor-background-body);
+    }  */
+

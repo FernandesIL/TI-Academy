@@ -1,0 +1,39 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background-color: darkslategrey;
+    width: 100vw;
+    height: 100vh;
+
+}
+
+main{
+    margin: 30px auto;
+    width: 600px;
+    height: 1200px;
+    border: 1px solid coral;
+    background-color: cornsilk;
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+}
+
+.strech{
+    align-items: stretch;
+}
+
+div{
+    width: 100px;
+    height: 100px;
+    padding: 10px;
+    background-color: darkmagenta;
+    margin: 2px;
+}
+
+.tamanhoFixo{
+    height: 100px;
+}

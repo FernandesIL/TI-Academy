@@ -1,0 +1,35 @@
+*{
+    margin: 0;
+    border: 0;
+    padding: 0;
+    }
+
+     div#mae{
+        width: 100px;
+        height: auto;
+        background-color: coral;
+            }
+
+    /* div#filha{
+        width: 100px;
+        height: 100px;
+        background-color: green;
+        position: absolute;
+        top: 0;
+    } */
+
+    div.filhas{
+        width: 80px;
+        height: 80px;
+        background-color: darkcyan;
+        margin: 5px;
+    }
+
+    #corunica{
+        background-color: black;
+        position: sticky;
+        background-size: 50%;
+        border: 3px solid darkviolet; 
+        top: 30px;
+
+    }

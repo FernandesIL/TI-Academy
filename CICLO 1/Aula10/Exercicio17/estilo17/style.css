@@ -1,0 +1,14 @@
+*{
+    margin: 0;
+    border: 0;
+    padding: 0;
+}
+
+div{
+    width: 100px;
+    height: 100px;
+    background-color: deeppink;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+}
