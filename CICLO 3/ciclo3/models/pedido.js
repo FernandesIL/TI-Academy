@@ -15,6 +15,7 @@ module.exports = (sequelize, DataTypes) => {
       Pedido.belongsToMany(models.Servico,{
         through: 'ItemPedido'
       });
+      Pedido.hasMany(models.ItemPedido);
     }
   };
   Pedido.init({
