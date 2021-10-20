@@ -20,7 +20,7 @@ module.exports = (sequelize, DataTypes) => {
       });
       Pedido.hasMany(models.ItemPedido, {
         foreignKey: 'PedidoId' , as: 'item_pedido'
-      })
+      });
     }
   };
   Pedido.init({

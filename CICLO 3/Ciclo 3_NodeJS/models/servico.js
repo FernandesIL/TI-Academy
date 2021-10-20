@@ -16,7 +16,7 @@ module.exports = (sequelize, DataTypes) => {
       });
       Servico.hasMany(models.ItemPedido, {
         foreignKey: 'ServicoId' , as: 'item_servicos'
-      })
+      });
     }
   };
   Servico.init({

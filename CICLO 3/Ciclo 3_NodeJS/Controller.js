@@ -27,29 +27,29 @@ app.get('/', function(req,res){
     res.send('Olá, Mundo!');
 });
 
-app.get('/servicos', async(req,res) =>{
-    await servico.create({
-        nome: "HTML/CSS",
-        descricao: "Páginas estáticas estilizadas",
-        createAt: new Date(),
-        updateAt: new Date()
-    });
-    res.send('Serviço criado com sucesso!');
-});
+// app.get('/servicos', async(req,res) =>{
+//     await servico.create({
+//         nome: "HTML/CSS",
+//         descricao: "Páginas estáticas estilizadas",
+//         createAt: new Date(),
+//         updateAt: new Date()
+//     });
+//     res.send('Serviço criado com sucesso!');
+// });
 
-app.get('/clientes', function(req, res){
-    res.send('SEJA BEM VINDO (A) A SERVICESTI.')
-});
+// app.get('/clientes', function(req, res){
+//     res.send('SEJA BEM VINDO (A) A SERVICESTI.')
+// });
 
-app.post('/servico',async(req,res) => {
-        await servico.create({
-            nome: "NodeJs",
-            descricao: "Desenvolvimento de aplicação back-end",
-            createAt:new Date(),
-            updateAt: new Date()
-        });
-        res.send('O serviço foi criado com sucesso!');
-    });
+// app.post('/servico',async(req,res) => {
+//         await servico.create({
+//             nome: "NodeJs",
+//             descricao: "Desenvolvimento de aplicação back-end",
+//             createAt:new Date(),
+//             updateAt: new Date()
+//         });
+//         res.send('O serviço foi criado com sucesso!');
+//     });
 
     // Requisição externa executada por comando interno.
 // app.post('/servicos',async(req,res) => {
@@ -60,8 +60,8 @@ app.post('/servico',async(req,res) => {
 //     res.send('O serviço foi criado com sucesso!')
 // })
 
-// //Requisição via corpo da página
-app.post('/servicos',async(req,res) => {
+// //Requisição via corpo da página para criar serviços
+app.post('/novoservico',async(req,res) => {
     await servico.create(
         req.body
     ).then(function(){ // Após tentar:
@@ -91,157 +91,9 @@ app.get('/cliente01',async(req,res) => {
         res.send('Novo cliente cadastrado');
     });
 
+// //Consulta de dados:
 
-
-
-
-
-// app.get('/Area-clientes', function(req,res){
-//     res.send('Sejam bem vindo(a) a ServicesTI.');
-// });
-
-// app.get('/Area-servicos',function(req,res){
-//     res.send('Seja bem vindo a sessão de serviços');
-// });
-
-// app.get('/Area-pedidos',function(req,res){
-//     res.send('Seja bem vindo a sessão de pedidos');
-// });
-
-// // Criação com create()
-// //Para serviços - Usar os mesmos nomes disponíveis em Migrations/create-service.js
-// app.get('/servico01',async(req,res) => {
-//     await servico.create({
-//         nome: "HTML/CSS",
-//         descricao: "Desenvolvimento de Páginas estáticas estilizadas",
-//         createAt:new Date(),
-//         updateAt: new Date()
-//     });
-//     res.send('O serviço foi criado com sucesso!');
-// });
-
-// app.get('/servico02',async(req,res) => {
-//     await servico.create({
-//         nome: "NodeJs",
-//         descricao: "Desenvolvimento de aplicação back-end",
-//         createAt:new Date(),
-//         updateAt: new Date()
-//     });
-//     res.send('O serviço foi criado com sucesso!');
-// });
-
-// app.get('/cliente01',async(req,res) => {
-//     await cliente.create({
-//         nome : 'João',
-//         endereco : 'Av. Brasil',
-//         cidade : 'Maringá',
-//         uf : 'Pr',
-//         nascimento : 1990-12-31,
-//         clienteDesde: new Date(),
-//         createAt: new Date(),
-//         updateAt: new Date()
-//     });
-//     res.send('Novo cliente cadastrado');
-// });
-
-// app.get('/pedido01', async(req,res) => {
-//     await pedido.create({
-//         data : new Date(),
-//         ClienteId : 1
-//     });
-//     res.send('Novo pedido cadastrado.');
-// });
-
-// app.get('/item01', async(req,res) => {
-//     await itempedido.create({
-//         PedidoId : 1,
-//         ServicoId : 1,
-//         quantidade: 1,
-//         valor : 400.00
-//     });
-//     res.send('O item foi adicionado ao pedido');
-// });
-
-// //requisição externa
-// //método post permite a inclusão de dados por fonte externa
-
-// //Requisição externa executada por comando interno.
-// // app.post('/servicos',async(req,res) => {
-// //     await servico.create({
-// //         nome: "Delphi",
-// //         descricao: "Manutenção e Suporte a sistema legados em Delphi"
-// //     })
-// //     res.send('O serviço foi criado com sucesso!')
-// // })
-
-// //Requisição via corpo da página
-// app.post('/servicos',async(req,res) => {
-//     await servico.create(
-//         req.body
-//     ).then(function(){ // Após tentar:
-//         return res.json({
-//             error: false,
-//             message: 'O serviço foi criado com sucesso!'
-//         });
-//     }).catch(function(erro){ //Caso não funcione
-//         return res.status(400).json({
-//             error: true,
-//             message: 'Foi impossivel conectar ao servidor'
-//         });
-//     });
-// });
-
-// app.post('/clientes',async(req,res) => {
-//     await cliente.create(
-//         req.body
-//     ).then(function(){ // Após tentar:
-//         return res.json({
-//             error: false,
-//             message: 'O Cliente foi cadastrado com sucesso!'
-//         });
-//     }).catch(function(erro){ //Caso não funcione
-//         return res.status(400).json({
-//             error: true,
-//             message: 'Foi impossivel conectar ao servidor'
-//         });
-//     });
-// });
-
-// app.post('/pedidos',async(req,res) => {
-//     await pedido.create(
-//         req.body
-//     ).then(function(){ // Após tentar:
-//         return res.json({
-//             error: false,
-//             message: 'O Cliente foi cadastrado com sucesso!'
-//         });
-//     }).catch(function(erro){ //Caso não funcione
-//         return res.status(400).json({
-//             error: true,
-//             message: 'Foi impossivel conectar ao servidor'
-//         });
-//     });
-// });
-
-// app.post('/itempedido',async(req,res) => {
-//     await itempedido.create(
-//         req.body
-//     ).then(function(){ // Após tentar:
-//         return res.json({
-//             error: false,
-//             message: 'O Cliente foi cadastrado com sucesso!'
-//         });
-//     }).catch(function(erro){ //Caso não funcione
-//         return res.status(400).json({
-//             error: true,
-//             message: 'Foi impossivel conectar ao servidor'
-//         });
-//     });
-// });
-
-// //Consulta de dados = Model Querying 
-// //função findAll
-// app.get('/listaservicosall',async(req,res) => {
+// app.get('/listaservicos', async(req, res)=>{
 //     await servico.findAll({
 //         raw: true
 //     }).then(function(servicos){
@@ -249,164 +101,193 @@ app.get('/cliente01',async(req,res) => {
 //     });
 // });
 
-// app.get('/listapedidosall',async(req,res) => {
-//     await pedido.findAll({
-//         raw: true
-//     }).then(function(pedidos){
-//         res.json({pedidos})
-//     });
-// });
+//Consulta de dados_Aula 9:
 
-// app.get('/listaclientesall',async(req,res) => {
-//     await cliente.findAll({
-//         raw: true
-//     }).then(function(clientes){
-//         res.json({clientes})
-//     });
-// });
+app.get('/listaservicos', async(req, res)=>{
+    await servico.findAll({
+        order: [['nome', 'ASC']]
+    }).then(function(servicos){
+        res.json({servicos})
+    });
+});
 
-// // Busca ordenada (order)
-// app.get('/listaservicos',async(req,res) => {
-//     await servico.findAll({
-//         order: [['nome','ASC']] //ASC=menor -> maior;DESC=maior -> menor
-//     }).then(function(servicos){
-//         res.json({servicos})
-//     });
-// });
+//Quantidade de serviços disponíveis:
+app.get('/ofertaservicos', async(req, res)=>{
+    await servico.count('id').then(function(servicos){
+        res.json({servicos});
+    });
+});
 
-// //Numero de itens count
-// app.get('/ofertaservicos', async(req,res)=>{
-//     await servico.count('id').then(function(servicos){
-//         res.json(servicos)
-//     })
-// })
+//Visualizar um único serviço:
+app.get('/servico/:id', async(req,res)=>{
+    await servico.findByPk(req.params.id)
+    .then(serv =>{
+        return res.json({
+            error: false,
+            serv
+        });
+    }).catch(function(erro){
+        return res.status(400).json({
+            error: true,
+            message: "Erro: não foi possível conectar!"
+        });
+    });
+});
 
-// //buscar um especifico
-// app.get('/servico/:id', async(req,res)=>{
-//     await servico.findByPk(req.params.id)
-//     .then(serv =>{ // exemplo com arrow function
-//         return res.json({
-//             error: false,
-//             serv
-//         })
-//     }).catch(function(erro){ //outra forma de escrever a função
-//         return res.status(400).json({
-//             error : true,
-//             message : "Não foi possível conectar"
-//         })
-//     })
-// })
-
-
-
-// //Atualizações de classes
-// //alteração estática (save)
-// app.get('/updateservico01', async(req,res) =>{
+// //Alteração: Criar uma rota para fazer update
+// app.get('/atualizaservico', async(req, res)=>{
 //     await servico.findByPk(1)
 //     .then(serv =>{
-//         serv.nome = "HTML/CSS/JS";
-//         serv.descricao = "Páginas estáticas e dinâmicas estilizadas"
+//         serv.nome='HTML/CSS/JS';
+//         serv.descricao= 'Páginas estáticas e dinâmicas estilizadas';
 //         serv.save();
 //         return res.json({serv});
 //     });
 // });
 
-// //alteração via requisição direta do app
-// app.put('/updateservico', async(req,res) =>{
-//     await servico.update(req.body,{
-//         where:{id: req.body.id}
-//     }).then(function(){
-//         return res.json({
-//             error: false,
-//             message: "Serviço foi alterado com sucesso!"
-//         })
-//     }).catch(function(erro){
-//         return res.status(400).json({
-//             error: true,
-//             message: "Erro na alteração do serviço."
-//         })
-//     })
-// });
+ //Alteração: Criar uma rota para fazer update com put
+app.put('/atualizaservico', async(req, res)=>{
+    await servico.update(req.body,{
+        where: {id: req.body.id}
+    }).then(function(){
+        return res.json({
+            error: false,
+            message: "Serviço foi alterado com sucesso!"
+        });
+    }).catch(function(erro){
+        return res.status(400).json({
+            error: true,
+            message: "Erro na alteração do serviço."
+        });
+    });
+    
+});
 
-// //Busca por ID
-// app.get('/pedidos/:id', async (req,res) => {
-//     await pedido.findByPk(req.params.id, {
-//         include:[{
-//             all:true
-//         }]
-//     }).then(ped => {
-//         return res.json({ped})
-//     })
-// })
+//Combinar consulta e edição:
+app.get('/pedidos/:id', async(req, res)=>{
+    await pedido.findByPk(req.params.id,{include:[{all:true}]})
+    .then(ped=>{
+        return res.json({ped});
+    })
+})
 
-// //Alterar um item usando a busca de pedido por requisição
-// app.put('/pedido/:id/editaritem', async(req,res)=>{
-//     const item={
-//         quantidade: req.body.quantidade,
-//         valor: req.body.valor
-//     }
+app.put('/pedidos/:id/editaritem', async(req, res)=>{
+    const item= {
+        quantidade: req.body.quantidade,
+        valor: req.body.valor,
+    };
 
-//     //ver se o pedido existe
-//     if(!await pedido.findByPk(req.params.id)){
-//         return res.status(400).json({
-//             error: true,
-//             message: 'O Pedido não foi encontrado.'
-//         })
-//     }
+    if(!await pedido.findByPk(req.params.id)){
+        return res.status(400).json({
+            error: true,
+            message: 'Pedido não foi encontrado.'
+        });
+    };
 
-//     //ver se o serviço existe
-//     if(!await servico.findByPk(req.body.ServicoId)){
-//         return res.status(400).json({
-//             error: true,
-//             message: 'O Serviço não foi encontrado.'
-//         })
-//     }
+    if (!await servico.findByPk(req.body.ServicoId)){
+        return res.status(400).json({
+            error: true,
+            message: 'Serviço não foi encontrado.'
+        });
+    };
 
-//     // alterar o item do pedido em um dos serviços
-//     await itempedido.update(item, {
-//         //Condições para alteração
-//         where: 
-//         Sequelize.and(
-//             {ServicoId:req.body.ServicoId},
-//             {PedidoId: req.params.id}
-//         )
-//     }).then(function(itens){
-//         return res.json({
-//             error: false,
-//             message: 'Pedido alterado com sucesso',
-//             itens
-//         })
-//     }).catch(function(erro){
-//         return res.json({
-//             error: true,
-//             message: 'Não foi possível alterar o pedido'
-//         })
-//     })
+    await itempedido.update(item, {
+        where: Sequelize.and({ServicoId: req.body.ServicoId},
+            {PedidoId: req.params.id})
+    }).then(function(itens){
+        return res.json({
+            error: false,
+            message: "Pedido foi alterado com sucesso!",
+            itens
+        });
+    }).catch(function(erro){
+        return res.status(400).json({
+            error: true,
+            message: "Erro: não foi possível alterar."
+        });
+    });
+    });
+    
+//Exclusão:
 
-// })
+//Encontrando os Clientes:
+app.get('/listaclientes', async(rez, res)=>{
+    await cliente.findAll({
+        raw: true
+    }).then(function(clientes){
+        res.json({clientes})
+    });
+});
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+//Excluindo Clientes:
+app.get('/excluircliente/:id', async(req, res)=>{
+    await cliente.destroy({
+        where: {id:req.params.id}
+    }).then(function(){
+        return res.json({
+            error: false,
+            message: "Cliente excluído com sucesso!"
+        });
+    }).catch(function(erro){
+        return res.status(400).json({
+            error: true,
+            message: "Erro ao excluir o cliente."
+        });
+    });
+});
 
 
 
+// Exercício para criar clientes:
+app.post('/novocliente',async(req,res) => {
+    await cliente.create(
+        req.body
+    ).then(function(){ // Após tentar:
+        return res.json({
+            error: false,
+            message: 'O cliente foi cadastrado com sucesso!'
+        });
+    }).catch(function(erro){ //Caso não funcione
+        return res.status(400).json({
+            error: true,
+            message: 'Foi impossivel cadastrar o cliente'
+        })
+    });
+});
 
+// Para criar pedidos:
+app.post('/novopedido',async(req,res) => {
+    await pedido.create(
+        req.body
+    ).then(function(){ // Após tentar:
+        return res.json({
+            error: false,
+            message: 'O pedido foi realizado com sucesso!'
+        });
+    }).catch(function(erro){ //Caso não funcione
+        return res.status(400).json({
+            error: true,
+            message: 'Foi impossivel realizar o pedido'
+        })
+    });
+});
+
+// Pra criar um itempedido:
+app.post('/novoitempedido',async(req,res) => {
+    await itempedido.create(
+        req.body
+    ).then(function(){ // Após tentar:
+        return res.json({
+            error: false,
+            message: 'O item pedido foi cadastrado com sucesso!'
+        });
+    }).catch(function(erro){ //Caso não funcione
+        return res.status(400).json({
+            error: true,
+            message: 'Foi impossivel cadastrar o item pedido'
+        })
+    });
+});
 
 
 // //Exercicios Aula09
