@@ -5,20 +5,23 @@ import { Alert, Container, Table } from "reactstrap";
 
 import { api } from "../../../config";
 
-export const VisualizarServico = () => {
+export const ItensCompra = (props) => {
+    // console.log (props.match.params.id);
 
     const [data, setData] = useState([]);
+
+    const [id, setId] = useState(props.match.params.id)
 
     const [status, setStatus] = useState({
         type: '',
         message: ''
     });
 
-    const getServicos = async () => {
-        await axios.get(api + "/listaservicos")
+    const getItensCompra = async () => {
+        await axios.get(api + "/compra/" + id + "/listaritemcompra")
             .then((response) => {
-                console.log(response.data.servicos);
-                setData(response.data.servicos);
+                console.log(response.data.compra);
+                setData(response.data.compra);
             })
             .catch(() => {
                 setStatus({
@@ -30,8 +33,8 @@ export const VisualizarServico = () => {
     }
 
     useEffect(() => {
-        getServicos();
-    }, []);
+        getItensCompra();
+    }, [id]);
 
 
     return (
@@ -39,85 +42,43 @@ export const VisualizarServico = () => {
             <Container>
                 <div className="d-flex">
                     <div>
-                        <h1> Visualizar Informações do Serviço</h1>
+                        <h1> Itens da Compra</h1>
                     </div>
                     <div className="m-auto p-2">
-                        <Link to="cadastrarservico"
-                            className="btn btn-outline-dark btn-sm">Cadastrar</Link>
+                        <Link to="/visualizar-compra"
+                            className="btn btn-outline-dark btn-sm ">Compras</Link>                        
                     </div>
-                    {status.type === 'error' ? <Alert color="danger">{status.message}</Alert> : ""}
                 </div>
+                <hr className="m-1" />
+                {status.type === 'error' ? <Alert color="danger">{status.message}</Alert> : ''}
+                {status.type === 'success' ? <Alert color="success">{status.message}</Alert> : ''}
+
                 <Table striped>
                     <thead>
                         <tr>
-                            <th> ID </th>
-                            <th> Nome </th>
-                            <th> Descrição </th>
+                            <th> ID do Produto </th>
+                            <th> Quantidade </th>
+                            <th> Valor </th>
                             <th className="text-center"> Ação </th>
                         </tr>
                     </thead>
                     <tbody>
                         {data.map(item => (
-                            <tr key={item.id}>
-                                <td>{item.id}</td>
-                                <td>{item.nome}</td>
-                                <td>{item.descricao}</td>
+                            <tr key={item.ProdutoId}>
+                                <td>{item.ProdutoId}</td>
+                                <td>{item.quantidade}</td>
+                                <td>{item.valor}</td>
                                 <td className="text-center">
-                                    <Link to={"/ver-pedido/" + item.id}
-                                        className="btn btn-outline-primary btn-sm">
-                                        Consultar
-                                    </Link>
+                                    Em Construção                                    
                                 </td>
                             </tr>
 
                         ))}
                     </tbody>
                 </Table>
-
             </Container>
+            
         </div>
+        
     );
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

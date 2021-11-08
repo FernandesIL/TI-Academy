@@ -5,7 +5,7 @@ import { Alert, Container, Table } from "reactstrap";
 
 import { api } from "../../../config";
 
-export const VisualizarCliente = () => {
+export const VisualizarProduto = () => {
 
     const [data, setData] = useState([]);
 
@@ -14,11 +14,11 @@ export const VisualizarCliente = () => {
         message: ''
     });
 
-    const getCliente = async () => {
-        await axios.get(api + "/listaclientes")
+    const getProdutos = async () => {
+        await axios.get(api + "/listarprodutos")
             .then((response) => {
-                console.log(response.data.clientes);
-                setData(response.data.clientes);
+                console.log(response.data.produto);
+                setData(response.data.produto);
             })
             .catch(() => {
                 setStatus({
@@ -28,17 +28,17 @@ export const VisualizarCliente = () => {
                 // console.log("Erro: sem conexão com a API")
             })
     }
-    const apagarCliente = async (idCliente) => {
+    const apagarProduto = async (idProduto) => {
 
         const headers = {
             'Content-type': 'application/json'
         }
 
-        await axios.get(api + "/excluircliente/" + idCliente,
+        await axios.get(api + "/excluirproduto/" + idProduto,
             { headers })
             .then((response) => {
                 console.log(response.data.error);
-                getCliente();
+                getProdutos();
             })
             .catch(() => {
                 setStatus({
@@ -49,7 +49,7 @@ export const VisualizarCliente = () => {
     }
 
     useEffect(() => {
-        getCliente();
+        getProdutos();
     }, []);
 
 
@@ -58,55 +58,48 @@ export const VisualizarCliente = () => {
             <Container>
                 <div className="d-flex">
                     <div>
-                        <h1> Visualizar Informações do Cliente</h1>
+                        <h1> Visualizar Informações dos Produtos</h1>
                     </div>
                     <div className="m-auto p-2">
-                        <Link to="/cadastrar-cliente"
-                            className="btn btn-outline-dark btn-sm">Cadastrar</Link>
+                        <Link to="/cadastrarproduto"
+                            className="btn btn-outline-dark btn-sm">Cadastrar Produto</Link>
                     </div>
                     {status.type === 'error' ? <Alert color="danger">{status.message}</Alert> : ""}
                 </div>
+
                 <Table striped>
                     <thead>
                         <tr>
-                            <th> ID </th>
-                            <th> Nome </th>
-                            <th> Endereço </th>
-                            <th> Nascimento </th>
-                            <th className="text-center"> Ação </th>
+                            <th>ID</th>
+                            <th>Nome</th>
+                            <th>Descricao</th>
+                            <th className="text-center">Ação</th>
                         </tr>
                     </thead>
                     <tbody>
                         {data.map(item => (
                             <tr key={item.id}>
-                                <td>{item.id}</td>
+                                <th>{item.id}</th>
                                 <td>{item.nome}</td>
-                                <td>{item.endereco}</td>
-                                <td>{item.nascimento}</td>
+                                <td>{item.descricao}</td>
                                 <td className="text-center">
-                                    <Link to={"/editar-cliente/" + item.id}
+                                    <Link to={"/produto/" + item.id}
+                                        className="btn btn-outline-primary btn-sm mx-2">
+                                        Consultar
+                                    </Link>
+                                    <Link to={"/editar-produto/" + item.id}
                                         className="btn btn-outline-success btn-sm mx-2">
-                                        Editar
-                                    </Link>
-                                    <Link to={"/cliente/" + item.id + "/pedidos"}
-                                        className="btn btn-outline-primary btn-sm mx-2">
-                                        Pedidos
-                                    </Link>
-                                    <Link to={"/cliente/" + item.id + "/compras"}
-                                        className="btn btn-outline-primary btn-sm mx-2">
-                                         Compras
+                                        Editar Produto
                                     </Link>
                                     <span className="btn btn-outline-danger btn-sm"
-                                        onClick={() => apagarCliente(item.id)}>
-                                        Excluir
+                                        onClick={() => apagarProduto(item.id)}>
+                                        Excluir Produto
                                     </span>
                                 </td>
                             </tr>
-
                         ))}
                     </tbody>
                 </Table>
-
             </Container>
         </div>
     );

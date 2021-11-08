@@ -118,7 +118,7 @@ app.get('/ofertaservicos', async(req, res)=>{
     });
 });
 
-//Visualizar um único serviço:
+ //Visualizar um único serviço:
 app.get('/servico/:id', async(req,res)=>{
     await servico.findByPk(req.params.id)
     .then(serv =>{
@@ -133,6 +133,24 @@ app.get('/servico/:id', async(req,res)=>{
         });
     });
 });
+
+//Visualizar um único serviço (Aula01/11):
+app.get('/servico/:id/pedidos', async(req,res)=>{
+    await itempedido.findAll({
+        where: {ServicoId: req.params.id}})
+    .then(item =>{
+        return res.json({
+            error: false,
+            item
+        });
+    }).catch(function(erro){
+        return res.status(400).json({
+            error: true,
+            message: "Erro: não foi possível conectar!"
+        });
+    });
+});
+
 
 // //Alteração: Criar uma rota para fazer update
 // app.get('/atualizaservico', async(req, res)=>{
@@ -617,3 +635,122 @@ app.get('/compra/:id/listaritemcompra', async(req, res)=>{
         })
     })
 });
+
+//////////////////////////////////DESAFIO CICLO 4///////////////////////////////////////////
+//Listar pedidos:
+app.get('/listarpedidos', async(req, res)=>{
+    await pedido.findAll({
+        raw: true
+    }).then(function(pedido){
+        return res.json({pedido})
+    });
+});
+
+//Visualizar único cliente:
+app.get('/cliente/:id', async(req,res)=>{
+    await cliente.findByPk(req.params.id)
+    .then(cli =>{
+        return res.json({
+            error: false,
+            cli
+        });
+    }).catch(function(erro){
+        return res.status(400).json({
+            error: true,
+            message: "Erro: não foi possível conectar!"
+        });
+    });
+});
+
+//Editar Cliente
+app.put('/editarcliente', async(req, res)=>{
+    if(!await cliente.findByPk(req.body.id)){
+        return res.status(400).json({
+            error: true,
+            message: 'Cliente não foi encontrado.'
+        });
+    };
+    await cliente.update(req.body,{
+        where: {id: req.body.id}
+    }).then(function(){
+        return res.json({
+            error: false,
+            message: "Cliente editado com sucesso!"
+        });
+    }).catch(function(erro){
+        return res.status(400).json({
+            error: true,
+            message: "Erro na edição do cliente."
+        })
+    })
+    
+});
+
+//Pedidos do Cliente:
+app.get('/cliente/:id/pedidos', async(req,res)=>{
+    await pedido.findAll({
+        where: {ClienteId: req.params.id}})
+    .then(pedidos =>{
+        return res.json({
+            error: false,
+            pedidos
+        });
+    }).catch(function(erro){
+        return res.status(400).json({
+            error: true,
+            message: "Erro: não foi possível conectar!"
+        });
+    });
+});
+
+// Compras do Cliente:
+app.get('/cliente/:id/compras', async(req,res)=>{
+    await compra.findAll({
+        where: {ClienteId: req.params.id}})
+    .then(compras =>{
+        return res.json({
+            error: false,
+            compras
+        });
+    }).catch(function(erro){
+        return res.status(400).json({
+            error: true,
+            message: "Erro: não foi possível conectar!"
+        });
+    });
+});
+
+//Buscar pedidos que tenham serviços;
+app.get('/servico/:id/pedidos', async(req,res)=>{
+    await itempedido.findAll({
+        where: {ServicoId:req.params.id}
+    }).then(itens =>{
+        return res.json({
+            error: false,
+            itens
+        })
+    }).catch(function(erro){
+        return res.status(400).json({
+            error : true,
+            message : "Não foi possível conectar"
+        })
+    })
+})
+
+//Compras que tenham o produto:
+app.get('/produto/:id/compras', async(req,res)=>{
+    await itemcompra.findAll({
+        where: {ProdutoId:req.params.id}
+    }).then(itens =>{
+        return res.json({
+            error: false,
+            itens
+        })
+    }).catch(function(erro){
+        return res.status(400).json({
+            error : true,
+            message : "Não foi possível conectar"
+        })
+    })
+})
+

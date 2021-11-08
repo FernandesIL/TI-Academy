@@ -5,7 +5,7 @@ import { Alert, Container, Table } from "reactstrap";
 
 import { api } from "../../../config";
 
-export const VisualizarPedido = () => {
+export const VisualizarCompra = () => {
 
     const [data, setData] = useState([]);
 
@@ -14,11 +14,11 @@ export const VisualizarPedido = () => {
         message: ''
     });
 
-    const getPedidos = async () => {
-        await axios.get(api + "/listarpedidos")
+    const getCompras = async () => {
+        await axios.get(api + "/listarcompras")
             .then((response) => {
-                console.log(response.data.pedido);
-                setData(response.data.pedido);
+                console.log(response.data.compra);
+                setData(response.data.compra);
             })
             .catch(() => {
                 setStatus({
@@ -29,8 +29,28 @@ export const VisualizarPedido = () => {
             })
     }
 
+    const apagarCompras = async (idCompra) => {
+
+        const headers = {
+            'Content-type': 'application/json'
+        }
+
+        await axios.get(api + "/excluircompra/" + idCompra,
+            { headers })
+            .then((response) => {
+                console.log(response.data.error);
+                getCompras();
+            })
+            .catch(() => {
+                setStatus({
+                    type: 'error',
+                    message: 'Não foi possível conetar-se a API.'
+                });
+            });
+    }
+
     useEffect(() => {
-        getPedidos();
+        getCompras();
     }, []);
 
 
@@ -39,15 +59,14 @@ export const VisualizarPedido = () => {
             <Container>
                 <div className="d-flex">
                     <div>
-                        <h1> Visualizar Informações dos Pedidos</h1>
+                        <h1> Visualizar Informações das Compras</h1>
                     </div>
                     <div className="m-auto p-2">
-                        <Link to="cadastrarcliente"
+                        <Link to="/cadastrarcompra"
                             className="btn btn-outline-dark btn-sm">Cadastrar</Link>
                     </div>
                     {status.type === 'error' ? <Alert color="danger">{status.message}</Alert> : ""}
                 </div>
-
                 <Table striped>
                     <thead>
                         <tr>
@@ -64,10 +83,18 @@ export const VisualizarPedido = () => {
                                 <td>{item.ClienteId}</td>
                                 <td>{item.data}</td>
                                 <td className="text-center">
-                                    <Link to={"/listar-pedido/" + item.id}
-                                        className="btn btn-outline-primary btn-sm">
+                                <Link to={"/compra/" + item.id}
+                                        className="btn btn-outline-primary btn-sm mx-2">
                                         Consultar
                                     </Link>
+                                    <Link to={"/editar-compra/" + item.id}
+                                        className="btn btn-outline-success btn-sm mx-2">
+                                        Editar
+                                    </Link>                                    
+                                    <span className="btn btn-outline-danger btn-sm"
+                                        onClick={() => apagarCompras(item.id)}>
+                                        Excluir
+                                    </span>
                                 </td>
                             </tr>
                         ))}

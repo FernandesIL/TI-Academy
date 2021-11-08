@@ -18,7 +18,7 @@ export const Menu = (props) => {
     <div>
       <Navbar color="info" dark expand="md">
         <Container className='d-flex' >
-          <NavbarBrand href="/">Ti Academy</NavbarBrand>
+          <NavbarBrand href="/">TI Academy</NavbarBrand>
           <NavbarToggler onClick={toggle} />
           <Collapse isOpen={isOpen} navbar>
             <Nav className="mr-auto" navbar>
