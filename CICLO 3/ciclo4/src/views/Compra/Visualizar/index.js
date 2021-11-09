@@ -70,9 +70,9 @@ export const VisualizarCompra = () => {
                 <Table striped>
                     <thead>
                         <tr>
-                            <th>ID</th>
-                            <th>Cliente</th>
-                            <th>Data</th>
+                            <th>ID da Compra</th>
+                            <th>ID do Cliente</th>
+                            <th>Data da Compra</th>
                             <th className="text-center">Ação</th>
                         </tr>
                     </thead>

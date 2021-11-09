@@ -20,6 +20,9 @@ import {ItensCompra} from './views/Compra/Consultar';
 import {CadastrarProduto} from './views/Produto/Cadastrar';
 import {EditarProduto} from './views/Produto/Editar';
 import {ConsultarProduto} from './views/Produto/Consultar';
+import {AdicionarItemCompra} from './views/ItemCompra/Adicionar';
+import { EditarItemCompra} from './views/ItemCompra/Editar';
+
 
 
 
@@ -48,6 +51,9 @@ function App() {
           <Route path= "/cadastrarproduto" component= {CadastrarProduto}/>
           <Route path= "/editar-produto/:id" component= {EditarProduto}/>
           <Route path= "/produto/:id" component= {ConsultarProduto}/>
+          <Route path= "/itemcompra/:id/adicionaritem" component= {AdicionarItemCompra}/>
+          <Route path= "/itemcompra/:id/editaritem/:ProdutoId" component= {EditarItemCompra}/>
+          
           
          
 

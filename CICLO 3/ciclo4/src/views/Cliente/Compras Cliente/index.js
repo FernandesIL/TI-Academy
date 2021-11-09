@@ -56,7 +56,7 @@ export const ComprasCliente = (props) => {
                 <Table striped>
                     <thead>
                         <tr>
-                            <th> Compra </th>
+                            <th> ID da Compra </th>
                             <th> Data </th>
                             <th className="text-center"> Ação </th>
                         </tr>
@@ -67,7 +67,7 @@ export const ComprasCliente = (props) => {
                                 <td>{item.id}</td>
                                 <td>{item.data}</td>
                                 <td className="text-center">
-                                    <Link to={"/visualizar-pedido/" + item.PedidoId}
+                                    <Link to={"/compra/" + item.id}
                                         className="btn btn-outline-primary btn-sm">
                                         Consultar
                                     </Link>

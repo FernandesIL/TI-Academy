@@ -41,7 +41,7 @@ export const ConsultarProduto = (props) => {
             <Container>
                 <div className="d-flex">
                     <div>
-                        <h1> Pedidos com o Produto</h1>
+                        <h1> Compras com o Produto</h1>
                     </div>
                     <div className="m-auto p-2">
                         <Link to="/visualizar-produto"
@@ -55,7 +55,7 @@ export const ConsultarProduto = (props) => {
                 <Table striped>
                     <thead>
                         <tr>
-                            <th> ID do Produto </th>
+                            <th> ID da Compra </th>
                             <th> Quantidade </th>
                             <th> Valor </th>
                             <th className="text-center"> Ação </th>
@@ -63,12 +63,15 @@ export const ConsultarProduto = (props) => {
                     </thead>
                     <tbody>
                         {data.map(item => (
-                            <tr key={item.ProdutoId}>
-                                <td>{item.ProdutoId}</td>
+                            <tr key={item.CompraId}>
+                                <td>{item.CompraId}</td>
                                 <td>{item.quantidade}</td>
                                 <td>{item.valor}</td>
                                 <td className="text-center">
-                                    Em Construção                                    
+                                <Link to={"/compra/" + item.CompraId}
+                                        className="btn btn-outline-primary btn-sm mx-2">
+                                        Consultar
+                                    </Link>                               
                                 </td>
                             </tr>
 
